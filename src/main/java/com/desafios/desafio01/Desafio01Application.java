@@ -5,16 +5,21 @@ import java.util.Scanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.desafios.desafio01.entities.Order;
 import com.desafios.desafio01.services.OrderService;
 import com.desafios.desafio01.services.ShippingService;
 
 @SpringBootApplication
+@ComponentScan({"com.desafios.desafio01"})
 public class Desafio01Application {
-
+	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Desafio01Application.class, args);
+		
+		
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 		
@@ -26,11 +31,12 @@ public class Desafio01Application {
 		double discont = sc.nextDouble();
 		
 		Order o1 = new Order(cod, basic, discont);
-			
+		
 		System.out.println("Pedido código " + o1.getCod());
-		System.out.println("Valor total: R$ " + String.format("%.2f",(os.total(o1) + ss.shipment(o1))));
+		System.out.println("Valor total: R$ " + String.format("%.2f", os.total(o1) + ss.shipment(o1)));
 		
 		sc.close();
+		
 	}
 
 }
